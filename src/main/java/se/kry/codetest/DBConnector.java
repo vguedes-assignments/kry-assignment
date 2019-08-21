@@ -7,6 +7,7 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.jdbc.JDBCClient;
 import io.vertx.ext.sql.ResultSet;
 import io.vertx.ext.sql.SQLClient;
+import io.vertx.ext.sql.UpdateResult;;
 
 public class DBConnector {
 
@@ -47,5 +48,23 @@ public class DBConnector {
     return queryResultFuture;
   }
 
+  public Future<UpdateResult> update(String update, JsonArray params){
+    Future<UpdateResult> queryResultFuture = Future.future();
+    client.updateWithParams(update, params, res -> {
+      System.out.println("in connector.update");
+      
+      if (res.succeeded()) {
+        UpdateResult updateResult = res.result();
+        
+        System.out.println("No. of rows updated: " + updateResult.getUpdated());
+        queryResultFuture.complete(updateResult);
+        
+      } else {
+        queryResultFuture.fail(res.cause());
+      }
+    });
+
+    return queryResultFuture;
+  }
 
 }

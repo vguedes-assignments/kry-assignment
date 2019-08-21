@@ -54,10 +54,15 @@ test {
   }
 }
 
+task(migrate, dependsOn: 'classes', type: JavaExec) {
+   main = 'se.kry.codetest.migrate.DBMigration'
+   classpath = sourceSets.main.runtimeClasspath
+}
+
 run {
   args = ['run', mainVerticleName, "--redeploy=$watchForChange", "--launcher-class=$mainClassName", "--on-redeploy=$doOnChange"]
 }
 
-task wrapper(type: Wrapper) {
+wrapper{
   gradleVersion = '4.6'
 }

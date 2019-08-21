@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Welcome to KRY</title>
 </head>
+
 <body>
-KRY status poller
-<ul id="service-list">
-</ul>
-<input type="text" id="url-name">
-<button id="post-service">Save</button>
+    KRY status poller
+    <ul id="service-list">
+    </ul>
+    Add Service :
+    <input type="text" placeholder="url" id="url">
+    <div id="error-message-invalid-url" style="border: 1px solid red;color:red;display:none;font-size:15px;padding: 0 10px;">
+        Invalid URL, please try again :)
+        <div id="dismiss-error" style="display:inline-block;cursor: pointer;">
+            &#10005;
+        </div>
+    </div>
+    <input type="text" placeholder="name (optional)" id="name">
+    <button id="post-service">Save</button>
 
 </body>
 <script src="static/code.js">
 </script>
+
 </html>
